@@ -205,7 +205,7 @@ kotoedIngredient = Tasty.TestReporter [] runner
           Const summary <$ State.modify (+ 1)
 
         runGroup _options groupName children = Tasty.Traversal $ Functor.Compose $ do
-          Reader.local (groupName :) $ Functor.getCompose $ Tasty.getTraversal children
+          Reader.local (groupName :) $ Functor.getCompose $ Tasty.getTraversal $ mconcat children
 
       in do
         (Const summary, tests) <-
